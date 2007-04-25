@@ -1,6 +1,6 @@
 %define name xdg-user-dirs
 %define version 0.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: XDG user dirs
 Name: %{name}
@@ -28,6 +28,11 @@ localization (i.e. translation) of the filenames.
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 %find_lang %name
+mkdir -p %buildroot%_sysconfdir/X11/xinit.d/
+cat > %buildroot%_sysconfdir/X11/xinit.d/xdg-user-dirs-update << EOF
+#!/bin/sh
+%_bindir/xdg-user-dirs-update
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -37,5 +42,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS NEWS README
 %config(noreplace) %_sysconfdir/xdg/user-dirs.conf
 %config(noreplace) %_sysconfdir/xdg/user-dirs.defaults
+%attr(755,root,root) %_sysconfdir/X11/xinit.d/xdg-user-dirs-update
 %_bindir/xdg-user-dir
 %_bindir/xdg-user-dirs-update
