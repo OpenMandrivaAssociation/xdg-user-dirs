@@ -1,6 +1,6 @@
 %define name xdg-user-dirs
-%define version 0.6
-%define release %mkrel 2
+%define version 0.8
+%define release %mkrel 1
 
 Summary: XDG user dirs
 Name: %{name}
@@ -9,7 +9,7 @@ Release: %{release}
 Source0: http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.bz2
 License: GPL
 Group: System/Libraries
-Url: http://www.freedesktop.org/wiki/Software_2fxdg_2duser_2ddirs
+Url: http://www.freedesktop.org/wiki/Software/xdg-user-dirs
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
