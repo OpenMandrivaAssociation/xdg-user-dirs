@@ -1,12 +1,20 @@
 %define name xdg-user-dirs
 %define version 0.8
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: XDG user dirs
 Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.bz2
+# (fc) 0.8-2mdv use locale encoding on disk, not UTF-8
+Patch0: xdg-user-dirs-0.8-locale.patch
+# (fc) 0.8-2mdv disable some default directories
+Patch1: xdg-user-dirs-0.8-mdv.patch
+# (fc) 0.8-2mdv fix some crashes (CVS)
+Patch2: xdg-user-dirs-0.8-cvsfix.patch
+# (fc) 0.8-2mdv migrate old Mdk folders
+Patch3: xdg-user-dirs-0.8-mdkfolders.patch
 License: GPL
 Group: System/Libraries
 Url: http://www.freedesktop.org/wiki/Software/xdg-user-dirs
@@ -19,6 +27,10 @@ localization (i.e. translation) of the filenames.
 
 %prep
 %setup -q
+%patch0 -p1 -b .locale
+%patch1 -p1 -b .mdv
+%patch2 -p1 -b .cvsfix
+%patch3 -p1 -b .mdkfolders
 
 %build
 %configure2_5x
@@ -31,7 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p %buildroot%_sysconfdir/X11/xinit.d/
 cat > %buildroot%_sysconfdir/X11/xinit.d/xdg-user-dirs-update << EOF
 #!/bin/sh
-%_bindir/xdg-user-dirs-update
+if [ -x %_bindir/xdg-user-dirs-update ]; then
+  %_bindir/xdg-user-dirs-update
+fi
 EOF
 
 %clean
