@@ -1,6 +1,6 @@
 %define name xdg-user-dirs
-%define version 0.8
-%define release %mkrel 2
+%define version 0.9
+%define release %mkrel 1
 
 Summary: XDG user dirs
 Name: %{name}
@@ -11,8 +11,6 @@ Source0: http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.bz2
 Patch0: xdg-user-dirs-0.8-locale.patch
 # (fc) 0.8-2mdv disable some default directories
 Patch1: xdg-user-dirs-0.8-mdv.patch
-# (fc) 0.8-2mdv fix some crashes (CVS)
-Patch2: xdg-user-dirs-0.8-cvsfix.patch
 # (fc) 0.8-2mdv migrate old Mdk folders
 Patch3: xdg-user-dirs-0.8-mdkfolders.patch
 License: GPL
@@ -29,7 +27,6 @@ localization (i.e. translation) of the filenames.
 %setup -q
 %patch0 -p1 -b .locale
 %patch1 -p1 -b .mdv
-%patch2 -p1 -b .cvsfix
 %patch3 -p1 -b .mdkfolders
 
 %build
