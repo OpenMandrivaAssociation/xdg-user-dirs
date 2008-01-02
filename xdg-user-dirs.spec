@@ -16,6 +16,7 @@ Patch3: xdg-user-dirs-0.8-mdkfolders.patch
 License: GPL
 Group: System/Libraries
 Url: http://www.freedesktop.org/wiki/Software/xdg-user-dirs
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 xdg-user-dirs is a tool to help manage "well known" user directories
