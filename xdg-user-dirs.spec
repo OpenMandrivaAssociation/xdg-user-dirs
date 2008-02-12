@@ -1,12 +1,12 @@
 %define name xdg-user-dirs
-%define version 0.9
+%define version 0.10
 %define release %mkrel 1
 
 Summary: XDG user dirs
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.bz2
+Source0: http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # (fc) 0.8-2mdv use locale encoding on disk, not UTF-8
 Patch0: xdg-user-dirs-0.8-locale.patch
 # (fc) 0.8-2mdv disable some default directories
