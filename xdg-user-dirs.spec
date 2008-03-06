@@ -1,6 +1,6 @@
 %define name xdg-user-dirs
 %define version 0.10
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: XDG user dirs
 Name: %{name}
@@ -13,6 +13,8 @@ Patch0: xdg-user-dirs-0.8-locale.patch
 Patch1: xdg-user-dirs-0.8-mdv.patch
 # (fc) 0.8-2mdv migrate old Mdk folders
 Patch3: xdg-user-dirs-0.8-mdkfolders.patch
+# (fc) 0.10-2mdv handle HOME overriding pw_dir
+Patch4: xdg-user-dirs-0.10-home.patch
 License: GPL
 Group: System/Libraries
 Url: http://www.freedesktop.org/wiki/Software/xdg-user-dirs
@@ -28,6 +30,7 @@ localization (i.e. translation) of the filenames.
 %patch0 -p1 -b .locale
 %patch1 -p1 -b .mdv
 %patch3 -p1 -b .mdkfolders
+%patch4 -p1 -b .home
 
 %build
 %configure2_5x
