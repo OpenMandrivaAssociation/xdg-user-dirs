@@ -1,6 +1,6 @@
 %define name xdg-user-dirs
 %define version 0.10
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary: XDG user dirs
 Name: %{name}
