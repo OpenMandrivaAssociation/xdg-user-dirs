@@ -1,6 +1,6 @@
 %define name xdg-user-dirs
 %define version 0.10
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary: XDG user dirs
 Name: %{name}
@@ -10,7 +10,7 @@ Source0: http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # (fc) 0.8-2mdv use locale encoding on disk, not UTF-8
 Patch0: xdg-user-dirs-0.8-locale.patch
 # (fc) 0.8-2mdv disable some default directories
-Patch1: xdg-user-dirs-0.8-mdv.patch
+Patch1: xdg-user-dirs-0.10-mdv.patch
 # (fc) 0.8-2mdv migrate old Mdk folders
 Patch3: xdg-user-dirs-0.8-mdkfolders.patch
 # (fc) 0.10-2mdv handle HOME overriding pw_dir
