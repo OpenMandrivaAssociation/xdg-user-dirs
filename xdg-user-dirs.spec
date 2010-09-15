@@ -1,7 +1,7 @@
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
-Version:	0.12
-Release:	%mkrel 4
+Version:	0.13
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
@@ -11,11 +11,9 @@ Patch0:		xdg-user-dirs-0.8-locale.patch
 # (fc) 0.8-2mdv disable some default directories
 Patch1:		xdg-user-dirs-0.11-mdv.patch
 # (fc) 0.8-2mdv migrate old Mdk folders
-Patch3:		xdg-user-dirs-0.8-mdkfolders.patch
+Patch3:		xdg-user-dirs-0.13-mdkfolders.patch
 # (fc) 0.10-2mdv handle HOME overriding pw_dir
 Patch4:		xdg-user-dirs-0.10-home.patch
-#gw fix russian translation (bug #54244)
-Patch5:		xdg-user-dirs-0.12-remove-all-fuzzy-strings.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
