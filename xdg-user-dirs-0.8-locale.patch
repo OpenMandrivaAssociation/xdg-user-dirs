@@ -1,0 +1,8 @@
+--- xdg-user-dirs-0.8/user-dirs.conf.locale	2007-08-02 15:07:25.000000000 +0200
++++ xdg-user-dirs-0.8/user-dirs.conf	2007-08-02 15:07:33.000000000 +0200
+@@ -8,4 +8,4 @@ enabled=True
+ # This sets the filename encoding to use. You can specify an explicit
+ # encoding, or "locale" which means the encoding of the users locale
+ # will be used
+-filename_encoding=UTF-8
++filename_encoding=locale

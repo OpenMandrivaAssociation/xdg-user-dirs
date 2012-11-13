@@ -1,0 +1,67 @@
+diff -p -up xdg-user-dirs-0.13/xdg-user-dirs-update.c.0003 xdg-user-dirs-0.13/xdg-user-dirs-update.c
+--- xdg-user-dirs-0.13/xdg-user-dirs-update.c.0003	2010-01-11 13:17:01.000000000 +0100
++++ xdg-user-dirs-0.13/xdg-user-dirs-update.c	2010-09-15 09:07:20.000000000 +0200
+@@ -28,6 +28,15 @@ Directory backwards_compat_dirs[] = {
+   { NULL}
+ };
+ 
++Directory mdk_folders_dirs[] = {
++  { "DOWNLOAD", "Downloads" },
++  { "DOCUMENTS", "Documents" },
++  { "MUSIC", "Music" },
++  { "PICTURES", "Pictures" },
++  { "VIDEOS", "Video" },
++  { NULL}
++};
++
+ static Directory *default_dirs = NULL;
+ static Directory *user_dirs = NULL;
+ static int user_dirs_changed = 0;
+@@ -873,6 +882,19 @@ lookup_backwards_compat (Directory *dir)
+   return NULL;
+ }
+ 
++static const char *
++lookup_mdk_folders (Directory *dir)
++{
++  int i;
++
++  for (i = 0; mdk_folders_dirs[i].name != NULL; i++)
++    {
++      if (strcmp (dir->name, mdk_folders_dirs[i].name) == 0)
++	return dgettext("menu-messages", mdk_folders_dirs[i].path);
++    }
++  return NULL;
++}
++
+ static Directory *
+ find_dir (Directory *dirs, const char *name)
+ {
+@@ -939,9 +961,24 @@ create_dirs (int force)
+ 		  free (path_name);
+ 		  path_name = NULL;
+ 		}
+-	      else
+-		relative_path_name = strdup (compat_dir->path);
+-	    }
++	      else 
++		  relative_path_name = strdup (compat_dir->path);
++	      } else {
++	         /* try to reuse mdk-folder */
++		  const char *mdk_folder;
++		  mdk_folder = lookup_mdk_folders (default_dir);
++		  if (mdk_folder)
++  		    {
++		      path_name = concat_strings (get_home_dir (), "/", mdk_folder, NULL);
++		      if (!is_directory (path_name))
++			{
++			  path_name = NULL;
++			  free (path_name);
++			}
++		      else 
++	  		 relative_path_name = strdup (mdk_folder);
++	            }
++	       }
+ 	}
+ 
+       if (path_name == NULL)

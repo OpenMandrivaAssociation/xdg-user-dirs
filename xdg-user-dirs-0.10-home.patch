@@ -1,0 +1,29 @@
+diff -p -up xdg-user-dirs-0.10/xdg-user-dirs-update.c.home xdg-user-dirs-0.10/xdg-user-dirs-update.c
+--- xdg-user-dirs-0.10/xdg-user-dirs-update.c.home	2008-03-06 12:04:07.000000000 +0100
++++ xdg-user-dirs-0.10/xdg-user-dirs-update.c	2008-03-06 12:08:14.000000000 +0100
+@@ -290,14 +290,17 @@ get_home_dir (void)
+   if (home_dir != NULL)
+     return home_dir;
+ 
+-  setpwent ();
+-  pw = getpwuid (getuid ());
+-  endpwent ();
+-  
+-  if (pw && pw->pw_dir)
+-    home_dir = strdup (pw->pw_dir);
+-  else
+-    home_dir = getenv ("HOME");
++  home_dir = getenv ("HOME");
++  if (home_dir == NULL) {
++    setpwent ();
++    pw = getpwuid (getuid ());
++    endpwent ();
++
++    if (pw && pw->pw_dir)
++      home_dir = strdup (pw->pw_dir);
++    else
++      home_dir = strdup ("/");
++  }
+ 
+   return home_dir;
+ }
