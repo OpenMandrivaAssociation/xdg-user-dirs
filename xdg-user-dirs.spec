@@ -15,6 +15,7 @@ Patch3:		xdg-user-dirs-0.13-mdkfolders.patch
 # (fc) 0.10-2mdv handle HOME overriding pw_dir
 Patch4:		xdg-user-dirs-0.10-home.patch
 BuildRequires:	xsltproc
+BuildRequires:	docbook-style-xsl
 
 %description
 xdg-user-dirs is a tool to help manage "well known" user directories
