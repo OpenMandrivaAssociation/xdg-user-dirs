@@ -53,4 +53,8 @@ EOF
 %attr(755,root,root) %{_sysconfdir}/X11/xinit.d/xdg-user-dirs-update
 %{_bindir}/xdg-user-dir
 %{_bindir}/xdg-user-dirs-update
-
+%{_mandir}/man1/xdg-user-dir.1.*
+%{_mandir}/man1/xdg-user-dirs-update.1.*
+%{_mandir}/man5/user-dirs.conf.5.*
+%{_mandir}/man5/user-dirs.defaults.5.*
+%{_mandir}/man5/user-dirs.dirs.5.*
