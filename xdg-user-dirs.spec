@@ -1,7 +1,7 @@
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
 Version:	0.15
-Release:	6
+Release:	7
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
