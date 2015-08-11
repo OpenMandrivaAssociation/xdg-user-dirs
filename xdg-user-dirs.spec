@@ -1,3 +1,5 @@
+%define _disable_rebuild_configure 1
+
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
 Version:	0.15
