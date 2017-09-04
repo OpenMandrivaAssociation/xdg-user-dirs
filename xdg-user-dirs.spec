@@ -53,6 +53,7 @@ EOF
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.conf
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.defaults
 %attr(755,root,root) %{_sysconfdir}/X11/xinit.d/xdg-user-dirs-update
+%{_sysconfdir}/xdg/autostart/xdg-user-dirs.desktop
 %{_bindir}/xdg-user-dir
 %{_bindir}/xdg-user-dirs-update
 %{_mandir}/man1/xdg-user-dir.1.*
