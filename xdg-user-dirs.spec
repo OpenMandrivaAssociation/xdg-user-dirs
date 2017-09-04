@@ -2,8 +2,8 @@
 
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
-Version:	0.15
-Release:	11
+Version:	0.16
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
@@ -29,7 +29,7 @@ localization (i.e. translation) of the filenames.
 %apply_patches
 
 %build
-%configure2_5x
+%configure
 %make
 
 make -C po update-po
@@ -53,6 +53,7 @@ EOF
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.conf
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.defaults
 %attr(755,root,root) %{_sysconfdir}/X11/xinit.d/xdg-user-dirs-update
+%{_sysconfdir}/xdg/autostart/xdg-user-dirs.desktop
 %{_bindir}/xdg-user-dir
 %{_bindir}/xdg-user-dirs-update
 %{_mandir}/man1/xdg-user-dir.1.*
