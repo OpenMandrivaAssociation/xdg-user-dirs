@@ -2,8 +2,8 @@
 
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
-Version:	0.16
-Release:	2
+Version:	0.17
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
@@ -14,8 +14,6 @@ Patch0:		xdg-user-dirs-0.8-locale.patch
 Patch1:		xdg-user-dirs-0.11-mdv.patch
 # (fc) 0.8-2mdv migrate old Mdk folders
 Patch3:		xdg-user-dirs-0.13-mdkfolders.patch
-# (fc) 0.10-2mdv handle HOME overriding pw_dir
-Patch4:		xdg-user-dirs-0.10-home.patch
 BuildRequires:	xsltproc
 BuildRequires:	docbook-style-xsl
 
