@@ -3,7 +3,7 @@
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
 Version:	0.17
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
@@ -41,28 +41,28 @@ make -C po update-po
 mkdir -p %{buildroot}%{_userunitdir}
 install -c -m 644 %{S:1} %{buildroot}%{_userunitdir}/xdg-user-dirs-update.service
 
+install -d %{buildroot}%{_userpresetdir}
+cat > %{buildroot}%{_userpresetdir}/86-%{name}.preset << EOF
+enable xdg-user-dirs-update.service
+EOF
+
 # We use the systemd service instead
 rm -rf %{buildroot}%{_sysconfdir}/xdg/autostart
 
 %find_lang %{name}
 
 %post
-systemctl --global enable xdg-user-dirs-update.service
+%systemd_user_post xdg-user-dirs-update.service
 
 %preun
-if [ "$1" = "0" ]; then
-	systemctl --global disable xdg-user-dirs-update.service
-fi
+%systemd_user_preun xdg-user-dirs-update.service
 
 %files -f %{name}.lang
 %doc AUTHORS NEWS README
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.conf
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.defaults
+%{_userpresetdir}/86-%{name}.preset
 %{_userunitdir}/xdg-user-dirs-update.service
 %{_bindir}/xdg-user-dir
 %{_bindir}/xdg-user-dirs-update
-%{_mandir}/man1/xdg-user-dir.1*
-%{_mandir}/man1/xdg-user-dirs-update.1*
-%{_mandir}/man5/user-dirs.conf.5*
-%{_mandir}/man5/user-dirs.defaults.5*
-%{_mandir}/man5/user-dirs.dirs.5*
+%doc %{_mandir}/man?/*.*
