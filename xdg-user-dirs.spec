@@ -3,19 +3,15 @@
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
 Version:	0.17
-Release:	4
+Release:	5
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
 Source0:	http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Systemd integration, shamelessly stolen from Arch
-Source1:	https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xdg-user-dirs/trunk/xdg-user-dirs-update.service
-# (fc) 0.8-2mdv use locale encoding on disk, not UTF-8
-Patch0:		xdg-user-dirs-0.8-locale.patch
-# (fc) 0.8-2mdv disable some default directories
-Patch1:		xdg-user-dirs-0.11-mdv.patch
-# (fc) 0.8-2mdv migrate old Mdk folders
-Patch3:		xdg-user-dirs-0.13-mdkfolders.patch
+# Systemd integration, initially stolen from Arch
+# https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xdg-user-dirs/trunk/xdg-user-dirs-update.service
+# with some modifications for locale support
+Source1:	xdg-user-dirs-update.service
 Patch4:		http://svnweb.mageia.org/packages/cauldron/xdg-user-dirs/current/SOURCES/xdg-user-dirs-fdo-use-fuzzy.patch
 BuildRequires:	xsltproc
 BuildRequires:	docbook-style-xsl
