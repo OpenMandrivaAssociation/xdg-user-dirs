@@ -1,9 +1,13 @@
 %define _disable_rebuild_configure 1
+%ifnarch %{riscv}
+# (tpg) optimize it a bit
+%global optflags %{optflags} -Oz --rtlib=compiler-rt
+%endif
 
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
 Version:	0.18
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
