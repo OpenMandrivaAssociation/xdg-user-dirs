@@ -10,7 +10,7 @@ Version:	0.18
 Release:	3
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://freedesktop.org/wiki/Software/xdg-user-dirs
+Url:		https://freedesktop.org/wiki/Software/xdg-user-dirs
 Source0:	http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # Systemd integration, initially stolen from Arch
 # https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xdg-user-dirs/trunk/xdg-user-dirs-update.service
