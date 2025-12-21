@@ -17,6 +17,11 @@ Source0:	http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # with some modifications for locale support
 Source1:	xdg-user-dirs-update.service
 Patch4:		http://svnweb.mageia.org/packages/cauldron/xdg-user-dirs/current/SOURCES/xdg-user-dirs-fdo-use-fuzzy.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	xsltproc
 BuildRequires:	docbook-style-xsl
 BuildRequires:	systemd-rpm-macros
