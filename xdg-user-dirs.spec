@@ -18,6 +18,9 @@ Source0:	http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.gz
 Source1:	xdg-user-dirs-update.service
 
 BuildRequires:  meson
+BuildRequires:  cmake
+BuildRequires:  gettext
+BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:	xsltproc
 BuildRequires:	docbook-style-xsl
 BuildRequires:	systemd-rpm-macros
@@ -49,7 +52,7 @@ EOF
 # We use the systemd service instead
 rm -rf %{buildroot}%{_sysconfdir}/xdg/autostart
 
-#find_lang %{name}
+%find_lang %{name}
 
 %post
 %systemd_user_post xdg-user-dirs-update.service
@@ -57,14 +60,14 @@ rm -rf %{buildroot}%{_sysconfdir}/xdg/autostart
 %preun
 %systemd_user_preun xdg-user-dirs-update.service
 
-%files 
-#-f %{name}.lang
+%files -f %{name}.lang
 %doc AUTHORS NEWS README*
 %license COPYING
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.conf
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.defaults
 %{_userpresetdir}/86-%{name}.preset
 %{_userunitdir}/xdg-user-dirs-update.service
+%{_userunitdir}/xdg-user-dirs.service
 %{_bindir}/xdg-user-dir
 %{_bindir}/xdg-user-dirs-update
 %doc %{_mandir}/man?/*.*
