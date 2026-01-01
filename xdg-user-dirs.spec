@@ -6,8 +6,8 @@
 
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
-Version:	0.18
-Release:	3
+Version:	0.19
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		https://freedesktop.org/wiki/Software/xdg-user-dirs
@@ -16,12 +16,11 @@ Source0:	http://user-dirs.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/xdg-user-dirs/trunk/xdg-user-dirs-update.service
 # with some modifications for locale support
 Source1:	xdg-user-dirs-update.service
-Patch4:		http://svnweb.mageia.org/packages/cauldron/xdg-user-dirs/current/SOURCES/xdg-user-dirs-fdo-use-fuzzy.patch
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	slibtool
-BuildRequires:	make
+
+BuildRequires:  meson
+BuildRequires:  cmake
+BuildRequires:  gettext
+BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:	xsltproc
 BuildRequires:	docbook-style-xsl
 BuildRequires:	systemd-rpm-macros
@@ -34,14 +33,13 @@ localization (i.e. translation) of the filenames.
 
 %prep
 %autosetup -p1
-%configure
+%meson
 
 %build
-%make_build
-make -C po update-po
+%meson_build
 
 %install
-%make_install
+%meson_install
 
 mkdir -p %{buildroot}%{_userunitdir}
 install -c -m 644 %{S:1} %{buildroot}%{_userunitdir}/xdg-user-dirs-update.service
@@ -63,11 +61,13 @@ rm -rf %{buildroot}%{_sysconfdir}/xdg/autostart
 %systemd_user_preun xdg-user-dirs-update.service
 
 %files -f %{name}.lang
-%doc AUTHORS NEWS README
+%doc AUTHORS NEWS README*
+%license COPYING
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.conf
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.defaults
 %{_userpresetdir}/86-%{name}.preset
 %{_userunitdir}/xdg-user-dirs-update.service
+%{_userunitdir}/xdg-user-dirs.service
 %{_bindir}/xdg-user-dir
 %{_bindir}/xdg-user-dirs-update
 %doc %{_mandir}/man?/*.*
