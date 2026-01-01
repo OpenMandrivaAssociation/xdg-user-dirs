@@ -49,7 +49,7 @@ EOF
 # We use the systemd service instead
 rm -rf %{buildroot}%{_sysconfdir}/xdg/autostart
 
-%find_lang %{name}
+#find_lang %{name}
 
 %post
 %systemd_user_post xdg-user-dirs-update.service
@@ -57,7 +57,8 @@ rm -rf %{buildroot}%{_sysconfdir}/xdg/autostart
 %preun
 %systemd_user_preun xdg-user-dirs-update.service
 
-%files -f %{name}.lang
+%files 
+#-f %{name}.lang
 %doc AUTHORS NEWS README*
 %license COPYING
 %config(noreplace) %{_sysconfdir}/xdg/user-dirs.conf
