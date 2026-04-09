@@ -6,7 +6,7 @@
 
 Summary:	XDG user dirs
 Name:		xdg-user-dirs
-Version:	0.19
+Version:	0.20
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
